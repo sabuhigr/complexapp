@@ -7,7 +7,7 @@ before_install:
  - docker build -t sabuhi1/react-test -f ./client/Dockerfile.dev ./client
 
 script:
- - docker run -e CI=true Sabuhi1/react-test npm test 
+ - docker run -e CI=true sabuhi1/react-test npm test 
 
 after_success:
  - docker build -t sabuhi1/complexapp-client ./client
