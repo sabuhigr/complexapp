@@ -1,0 +1,30 @@
+sudo: required 
+services:
+ - docker 
+
+
+before_install: 
+ - docker build -t Sabuhi1/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+ - docker run Sabuhi1/react-test npm test -- --coverage
+
+after_success:
+ - docker build -t Sabuhi1/complexapp-client ./client
+ - docker build -t Sabuhi1/complexapp-server ./server
+ - docker build -t Sabuhi1/complexapp-nginx ./nginx
+ - docker build -t Sabuhi1/complexapp-worker ./worker
+
+#Log In to docker login first
+
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+#Take and push to hub.docker.com 
+
+ - docker push sabuhi1997/complexapp-client
+ - docker push sabuhi1997/complexapp-server
+ - docker push sabuhi1997/complexapp-nginx
+ - docker push sabuhi1997/complexapp-worker
+
+ 
+
