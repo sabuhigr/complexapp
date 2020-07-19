@@ -4,16 +4,16 @@ services:
 
 
 before_install: 
- - docker build -t Sabuhi1/react-test -f ./client/Dockerfile.dev ./client
+ - docker build -t sabuhi1/react-test -f ./client/Dockerfile.dev ./client
 
 script:
  -- docker run -e CI=true Sabuhi1/react-test npm test 
 
 after_success:
- - docker build -t Sabuhi1/complexapp-client ./client
- - docker build -t Sabuhi1/complexapp-server ./server
- - docker build -t Sabuhi1/complexapp-nginx ./nginx
- - docker build -t Sabuhi1/complexapp-worker ./worker
+ - docker build -t sabuhi1/complexapp-client ./client
+ - docker build -t sabuhi1/complexapp-server ./server
+ - docker build -t sabuhi1/complexapp-nginx ./nginx
+ - docker build -t sabuhi1/complexapp-worker ./worker
 
 #Log In to docker login first
 
